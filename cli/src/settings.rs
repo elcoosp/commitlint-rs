@@ -49,7 +49,7 @@ mod tests {
         use insta::assert_yaml_snapshot;
         use std::fs;
 
-        let config_schema = schemars::schema_for!(Config);
+        let config_schema = schemars::schema_for!(Settings);
         let config_schema_json = serde_json::to_string_pretty(&config_schema).unwrap();
         assert_yaml_snapshot!(config_schema);
         fs::write("json-schema/config.json", config_schema_json).unwrap();
