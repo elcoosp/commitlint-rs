@@ -31,50 +31,24 @@ pub mod type_max_length;
 /// See: https://commitlint.js.org/reference/rules.html
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
+#[serde_with::apply(
+    Option => #[serde(skip_serializing_if = "Option::is_none")],
+)]
 pub struct Rules {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub body_empty: Option<BodyEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub body_max_length: Option<BodyMaxLength>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub description_empty: Option<DescriptionEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub description_format: Option<DescriptionFormat>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub description_max_length: Option<DescriptionMaxLength>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub footers_empty: Option<FootersEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub scope: Option<Scope>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub scope_empty: Option<ScopeEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub scope_format: Option<ScopeFormat>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub scope_max_length: Option<ScopeMaxLength>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub subject_empty: Option<SubjectEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub r#type: Option<Type>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub type_empty: Option<TypeEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub type_format: Option<TypeFormat>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub type_max_length: Option<TypeMaxLength>,
 }
 
