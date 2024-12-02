@@ -23,7 +23,7 @@ impl Settings {
         }
         conf_builder = conf_builder
             .add_source(File::with_name(Self::DEFAULT_CONFIG_FILENAME).required(false))
-            .add_source(Environment::with_prefix("CL"));
+            .add_source(Environment::with_prefix("CL").separator("_"));
         let conf = conf_builder.build()?;
 
         conf.try_deserialize()
