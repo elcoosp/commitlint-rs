@@ -1,7 +1,7 @@
 use crate::{
-    config::Config,
     git::{parse_commit_message, parse_subject},
     result::Result as LintResult,
+    settings::Settings,
 };
 use std::{collections::HashMap, fmt::Error};
 
@@ -59,7 +59,7 @@ impl Message {
 }
 
 /// validate the raw commit message.
-pub async fn validate(msg: &Message, config: &Config) -> Result<LintResult, Error> {
+pub async fn validate(msg: &Message, config: &Settings) -> Result<LintResult, Error> {
     let violations = config.rules.validate(msg);
 
     Ok(LintResult { violations })
