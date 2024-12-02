@@ -28,66 +28,52 @@ pub mod type_format;
 pub mod type_max_length;
 
 /// Rules represents the rules of commitlint.
-/// See: https://commitlint.js.org/#/reference-rules
+/// See: https://commitlint.js.org/reference/rules.html
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all = "kebab-case")]
 pub struct Rules {
-    #[serde(rename = "body-empty")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub body_empty: Option<BodyEmpty>,
 
-    #[serde(rename = "body-max-length")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub body_max_length: Option<BodyMaxLength>,
 
-    #[serde(rename = "description-empty")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description_empty: Option<DescriptionEmpty>,
 
-    #[serde(rename = "description-format")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description_format: Option<DescriptionFormat>,
 
-    #[serde(rename = "description-max-length")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description_max_length: Option<DescriptionMaxLength>,
 
-    #[serde(rename = "footers-empty")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub footers_empty: Option<FootersEmpty>,
 
-    #[serde(rename = "scope")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub scope: Option<Scope>,
 
-    #[serde(rename = "scope-empty")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub scope_empty: Option<ScopeEmpty>,
 
-    #[serde(rename = "scope-format")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub scope_format: Option<ScopeFormat>,
 
-    #[serde(rename = "scope-max-length")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub scope_max_length: Option<ScopeMaxLength>,
 
-    #[serde(rename = "subject-empty")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub subject_empty: Option<SubjectEmpty>,
 
-    #[serde(rename = "type")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub r#type: Option<Type>,
 
-    #[serde(rename = "type-empty")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub type_empty: Option<TypeEmpty>,
 
-    #[serde(rename = "type-format")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub type_format: Option<TypeFormat>,
 
-    #[serde(rename = "type-max-length")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub type_max_length: Option<TypeMaxLength>,
 }
