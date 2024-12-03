@@ -59,8 +59,8 @@ impl Message {
 }
 
 /// validate the raw commit message.
-pub async fn validate(msg: &Message, config: &Settings) -> Result<LintResult, Error> {
-    let violations = config.rules.validate(msg);
+pub async fn validate(msg: &Message, settings: &Settings) -> Result<LintResult, Error> {
+    let violations = settings.rules.validate(msg);
 
     Ok(LintResult { violations })
 }

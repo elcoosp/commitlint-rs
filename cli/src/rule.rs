@@ -25,57 +25,32 @@ pub mod r#type;
 pub mod type_empty;
 pub mod type_format;
 pub mod type_max_length;
-
+// include!(concat!(env!("OUT_DIR"), "/Rules.rs"));
 /// Rules represents the rules of commitlint.
 /// See: https://commitlint.js.org/reference/rules.html
+#[rsmack_wrap::wrap(with = Option)]
 #[derive(Clone, Debug, Deserialize, Serialize)]
-#[serde(rename_all = "kebab-case")]
 #[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
+#[serde(rename_all = "kebab-case")]
+#[serde_with::apply(
+    Option => #[serde(skip_serializing_if = "Option::is_none")],
+)]
 pub struct Rules {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub body_empty: Option<BodyEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub body_max_length: Option<BodyMaxLength>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description_empty: Option<DescriptionEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description_format: Option<DescriptionFormat>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description_max_length: Option<DescriptionMaxLength>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub footers_empty: Option<FootersEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub scope: Option<Scope>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub scope_empty: Option<ScopeEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub scope_format: Option<ScopeFormat>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub scope_max_length: Option<ScopeMaxLength>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub subject_empty: Option<SubjectEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<Type>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub type_empty: Option<TypeEmpty>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub type_format: Option<TypeFormat>,
-
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub type_max_length: Option<TypeMaxLength>,
+    pub body_empty: BodyEmpty,
+    pub body_max_length: BodyMaxLength,
+    pub description_empty: DescriptionEmpty,
+    pub description_format: DescriptionFormat,
+    pub description_max_length: DescriptionMaxLength,
+    pub footers_empty: FootersEmpty,
+    pub scope: Scope,
+    pub scope_empty: ScopeEmpty,
+    pub scope_format: ScopeFormat,
+    pub scope_max_length: ScopeMaxLength,
+    pub subject_empty: SubjectEmpty,
+    pub r#type: Type,
+    pub type_empty: TypeEmpty,
+    pub type_format: TypeFormat,
+    pub type_max_length: TypeMaxLength,
 }
 
 /// Rule is a collection of rules.
