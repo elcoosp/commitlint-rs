@@ -1,6 +1,6 @@
-use crate::{make_format_rule, message::Message, result::Violation, rule::Rule};
+use crate::{make_format_rule, message::Message, result::Violation, rules::Rule};
 
-use super::Level;
+use crate::rules::Level;
 make_format_rule! {
     TypeFormat,
     "type"

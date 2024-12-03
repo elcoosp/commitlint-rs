@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Config",
+  "title": "Settings",
   "description": "Config represents the configuration of commitlint.",
   "type": "object",
   "properties": {

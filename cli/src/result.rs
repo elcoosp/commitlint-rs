@@ -1,4 +1,4 @@
-use crate::rule::Level;
+use crate::rules::Level;
 
 /// Result of the check.
 #[derive(Clone, Debug)]

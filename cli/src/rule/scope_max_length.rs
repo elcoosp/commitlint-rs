@@ -1,5 +1,5 @@
-use super::Level;
-use crate::{make_length_rule, message::Message, result::Violation, rule::Rule};
+use crate::rules::Level;
+use crate::{make_length_rule, message::Message, result::Violation, rules::Rule};
 
 make_length_rule! {
     ScopeMaxLength,

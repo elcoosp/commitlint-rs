@@ -21,14 +21,26 @@ clap = { version = "4.5.4", features = ["derive", "env", "string"] }
 futures = "0.3.30"
 regex = "1.10.5"
 schemars = { version = "1.0.0-alpha.16", optional = true }
+config = { version = "0.14.1", optional = true }
 serde = { version = "1.0.201", features = ["derive"] }
 serde_json = "1.0.121"
 serde_yaml = "0.9.34"
+serde_with = { version = "3.11.0", features = ["macros"] }
 tokio = { version = "1.37.0", features = ["full"] }
+rsmack-wrap = { path = "../../rsmack/packages/rsmack-wrap" }
+[build-dependencies]
+serde_with = { version = "3.11.0", features = ["macros"] }
+rsmack-fs = { path = "../../rsmack/packages/rsmack-fs" }
+rsmack-utils = { path = "../../rsmack/packages/rsmack-utils" }
+rsmack-wrap = { path = "../../rsmack/packages/rsmack-wrap" }
+schemars = { version = "1.0.0-alpha.16", optional = true }
+quote = "1.0.37"
+serde = { version = "1.0.201", features = ["derive"] }
 
 [features]
 schemars = ["dep:schemars"]
-default = []
+config = ["dep:config"]
+default = ["config"]
 
 [package.metadata.binstall]
 pkg-url = "{ repo }/releases/download/v{ version }/commitlint-v{ version }-{ target }{ archive-suffix }"

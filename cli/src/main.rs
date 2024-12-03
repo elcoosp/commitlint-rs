@@ -1,10 +1,10 @@
 mod args;
-mod config;
 mod git;
 mod message;
 mod result;
 mod rule;
-
+mod rules;
+mod settings;
 use args::Args;
 use clap::Parser;
 use message::validate;
@@ -15,7 +15,7 @@ use std::process::exit;
 async fn main() {
     let args = Args::parse();
 
-    let config = match config::load(args.config.clone()).await {
+    let settings = match settings::load(args.config.clone()).await {
         Ok(c) => c,
         Err(err) => {
             eprintln!("Failed to load config: {}", err);
@@ -24,7 +24,7 @@ async fn main() {
     };
 
     if args.print_config {
-        println!("{}", config);
+        println!("{}", settings);
     }
 
     let messages = match args.read() {
@@ -38,7 +38,7 @@ async fn main() {
     let threads = messages
         .into_iter()
         .map(|message| {
-            let config = config.clone();
+            let config = settings.clone();
             tokio::spawn(async move { validate(&message, &config).await })
         })
         .collect::<Vec<_>>();
@@ -55,11 +55,11 @@ async fn main() {
             if !h.violations.is_empty() {
                 for violation in &h.violations {
                     match violation.level {
-                        rule::Level::Error => {
+                        rules::Level::Error => {
                             eprintln!("{}", violation.message);
                             has_error = true
                         }
-                        rule::Level::Warning => {
+                        rules::Level::Warning => {
                             println!("{}", violation.message);
                         }
                         _ => {}
