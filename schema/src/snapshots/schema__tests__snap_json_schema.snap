@@ -1,5 +1,5 @@
 ---
-source: cli/src/settings.rs
+source: schema/src/main.rs
 expression: config_schema
 snapshot_kind: text
 ---
