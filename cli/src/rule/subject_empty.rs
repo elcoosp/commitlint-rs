@@ -1,16 +1,9 @@
-use crate::{message::Message, result::Violation, rule::Rule};
-use serde::{Deserialize, Serialize};
+use crate::{make_rule, message::Message, result::Violation, rule::Rule};
 
 use super::Level;
 
-/// SubjectEmpty represents the subject-empty rule.
-#[derive(Clone, Debug, Deserialize, Serialize)]
-pub struct SubjectEmpty {
-    /// Level represents the level of the rule.
-    ///
-    // Note that currently the default literal is not supported.
-    // See: https://github.com/serde-rs/serde/issues/368
-    level: Option<Level>,
+make_rule! {
+    SubjectEmpty,
 }
 
 /// SubjectEmpty represents the subject-empty rule.
@@ -85,9 +78,6 @@ Hello world"
         let violation = rule.validate(&message);
         assert!(violation.is_some());
         assert_eq!(violation.clone().unwrap().level, Level::Error);
-        assert_eq!(
-            violation.unwrap().message,
-            "subject is empty".to_string()
-        );
+        assert_eq!(violation.unwrap().message, "subject is empty".to_string());
     }
 }
