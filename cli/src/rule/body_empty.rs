@@ -1,39 +1,11 @@
+use crate::impl_empty_rule;
 use crate::rules::Level;
 use crate::{make_rule, message::Message, result::Violation, rules::Rule};
 
 make_rule! {
     BodyEmpty,
 }
-
-/// BodyEmpty represents the body-empty rule.
-impl Rule for BodyEmpty {
-    const NAME: &'static str = "body-empty";
-    const LEVEL: Level = Level::Error;
-
-    fn message(&self, _message: &Message) -> String {
-        "body is empty".to_string()
-    }
-
-    fn validate(&self, message: &Message) -> Option<Violation> {
-        if message.body.is_none() {
-            return Some(Violation {
-                level: self.level.unwrap_or(Self::LEVEL),
-                message: self.message(message),
-            });
-        }
-
-        None
-    }
-}
-
-/// Default implementation of BodyEmpty.
-impl Default for BodyEmpty {
-    fn default() -> Self {
-        Self {
-            level: Some(Self::LEVEL),
-        }
-    }
-}
+impl_empty_rule! {BodyEmpty, Error, "body", body}
 
 #[cfg(test)]
 mod tests {

@@ -234,3 +234,44 @@ macro_rules! make_rule {
     }
 };
 }
+
+#[macro_export]
+macro_rules! impl_empty_rule {
+    (
+        $ident:ident,
+        $level:ident,
+        $what_is_empty:literal,
+        $checked_field:ident
+    ) => {
+        paste::paste! {
+            #[doc = "[Rule] implementation of [" $ident "]"]
+            impl Rule for $ident {
+                const NAME: &'static str = [<$ident:dash>];
+                const LEVEL: Level = Level::$level;
+
+                fn message(&self, _message: &Message) -> String {
+                    format!("{} is empty", $what_is_empty)
+                }
+
+                fn validate(&self, message: &Message) -> Option<Violation> {
+                    if message.$checked_field.is_none() {
+                        return Some(Violation {
+                            level: self.level.unwrap_or(Self::LEVEL),
+                            message: self.message(message),
+                        });
+                    }
+
+                    None
+                }
+            }
+            #[doc = "Default implementation of [" $ident "]"]
+            impl Default for $ident {
+                fn default() -> Self {
+                    Self {
+                        level: Some(Self::LEVEL),
+                    }
+                }
+            }
+        }
+    };
+}

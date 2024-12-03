@@ -8,7 +8,7 @@
 @test "body max length" {
     run bash -c "echo \"feat(cli): impl -a flag
     
-Hello, I'm longer than 72 charactures. I'm very long so that it is not suitable as it's hard to read many long commit messages.
+Hello, I'm longer than 72 characters. I'm very long so that it is not suitable as it's hard to read many long commit messages.
 Make it smart. But we should not be opinionated so the default is ignored.\" | commitlint"
     [ "$status" -eq 0 ]
 }
