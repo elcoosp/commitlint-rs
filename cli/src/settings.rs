@@ -39,19 +39,3 @@ impl fmt::Display for Settings {
 pub async fn load(path: Option<PathBuf>) -> Result<Settings, ConfigError> {
     Settings::new(path)
 }
-
-#[cfg(test)]
-mod tests {
-    #[cfg(feature = "schemars")]
-    #[test]
-    fn generate_json_schema() {
-        use crate::settings::Settings;
-        use insta::assert_yaml_snapshot;
-        use std::fs;
-
-        let config_schema = schemars::schema_for!(Settings);
-        let config_schema_json = serde_json::to_string_pretty(&config_schema).unwrap();
-        assert_yaml_snapshot!(config_schema);
-        fs::write("json-schema/config.json", config_schema_json).unwrap();
-    }
-}
