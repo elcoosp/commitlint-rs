@@ -1,4 +1,4 @@
-use crate::rule::Rules;
+use crate::rules::Rules;
 use config::*;
 use serde::{Deserialize, Serialize};
 use std::fmt;

@@ -3,8 +3,8 @@ mod git;
 mod message;
 mod result;
 mod rule;
+mod rules;
 mod settings;
-
 use args::Args;
 use clap::Parser;
 use message::validate;
@@ -55,11 +55,11 @@ async fn main() {
             if !h.violations.is_empty() {
                 for violation in &h.violations {
                     match violation.level {
-                        rule::Level::Error => {
+                        rules::Level::Error => {
                             eprintln!("{}", violation.message);
                             has_error = true
                         }
-                        rule::Level::Warning => {
+                        rules::Level::Warning => {
                             println!("{}", violation.message);
                         }
                         _ => {}

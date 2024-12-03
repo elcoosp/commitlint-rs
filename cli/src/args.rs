@@ -87,8 +87,12 @@ impl Args {
         }
 
         let default_path = std::path::PathBuf::from(".git").join("COMMIT_EDITMSG");
-        let msg = std::fs::read_to_string(&default_path).unwrap_or_else(|_| panic!("Failed to read commit message from {}",
-                default_path.display()));
+        let msg = std::fs::read_to_string(&default_path).unwrap_or_else(|_| {
+            panic!(
+                "Failed to read commit message from {}",
+                default_path.display()
+            )
+        });
         Ok(vec![Message::new(msg)])
     }
 }
