@@ -34,6 +34,7 @@ rsmack-fs = { path = "../../rsmack/packages/rsmack-fs" }
 rsmack-utils = { path = "../../rsmack/packages/rsmack-utils" }
 rsmack-wrap = { path = "../../rsmack/packages/rsmack-wrap" }
 schemars = { version = "1.0.0-alpha.16", optional = true }
+quote = "1.0.37"
 serde = { version = "1.0.201", features = ["derive"] }
 
 [features]

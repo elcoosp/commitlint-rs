@@ -1,15 +1,6 @@
 use crate::{message::Message, result::Violation};
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
-
-use self::{
-    body_empty::BodyEmpty, body_max_length::BodyMaxLength, description_empty::DescriptionEmpty,
-    description_format::DescriptionFormat, description_max_length::DescriptionMaxLength,
-    footers_empty::FootersEmpty, r#type::Type, scope::Scope, scope_empty::ScopeEmpty,
-    scope_format::ScopeFormat, scope_max_length::ScopeMaxLength, subject_empty::SubjectEmpty,
-    type_empty::TypeEmpty, type_format::TypeFormat, type_max_length::TypeMaxLength,
-};
-
 pub mod body_empty;
 pub mod body_max_length;
 pub mod description_empty;
@@ -25,33 +16,8 @@ pub mod r#type;
 pub mod type_empty;
 pub mod type_format;
 pub mod type_max_length;
-// include!(concat!(env!("OUT_DIR"), "/Rules.rs"));
-/// Rules represents the rules of commitlint.
-/// See: https://commitlint.js.org/reference/rules.html
-#[rsmack_wrap::wrap(with = Option)]
-#[derive(Clone, Debug, Deserialize, Serialize)]
-#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
-#[serde(rename_all = "kebab-case")]
-#[serde_with::apply(
-    Option => #[serde(skip_serializing_if = "Option::is_none")],
-)]
-pub struct Rules {
-    pub body_empty: BodyEmpty,
-    pub body_max_length: BodyMaxLength,
-    pub description_empty: DescriptionEmpty,
-    pub description_format: DescriptionFormat,
-    pub description_max_length: DescriptionMaxLength,
-    pub footers_empty: FootersEmpty,
-    pub scope: Scope,
-    pub scope_empty: ScopeEmpty,
-    pub scope_format: ScopeFormat,
-    pub scope_max_length: ScopeMaxLength,
-    pub subject_empty: SubjectEmpty,
-    pub r#type: Type,
-    pub type_empty: TypeEmpty,
-    pub type_format: TypeFormat,
-    pub type_max_length: TypeMaxLength,
-}
+
+include!(concat!(env!("OUT_DIR"), "/Rules.rs"));
 
 /// Rule is a collection of rules.
 impl Rules {
@@ -153,7 +119,7 @@ impl Default for Rules {
         Self {
             body_empty: None,
             body_max_length: None,
-            description_empty: DescriptionEmpty::default().into(),
+            description_empty: description_empty::DescriptionEmpty::default().into(),
             description_format: None,
             description_max_length: None,
             footers_empty: None,
@@ -161,9 +127,9 @@ impl Default for Rules {
             scope_empty: None,
             scope_format: None,
             scope_max_length: None,
-            subject_empty: SubjectEmpty::default().into(),
+            subject_empty: subject_empty::SubjectEmpty::default().into(),
             r#type: None,
-            type_empty: TypeEmpty::default().into(),
+            type_empty: type_empty::TypeEmpty::default().into(),
             type_format: None,
             type_max_length: None,
         }
