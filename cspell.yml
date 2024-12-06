@@ -1,1 +1,15 @@
-words: [commitlint, schemars, commitlintrc, Keke, insta, binstall, serde, Keisuke, astrojs, splitn, rsmack, clippy]
+words:
+  - astrojs
+  - binstall
+  - clippy
+  - commitlint
+  - commitlintrc
+  - Edoc
+  - insta
+  - Keisuke
+  - Keke
+  - procmacro
+  - rsmack
+  - schemars
+  - serde
+  - splitn

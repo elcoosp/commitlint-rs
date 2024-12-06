@@ -7,6 +7,7 @@
 /// Rules represents the rules of commitlint.
 /// See: [rules documentation](https://commitlint.js.org/reference/rules.html)
 pub struct Rules {}
+
 fn main() {
     Rules::generate();
 }

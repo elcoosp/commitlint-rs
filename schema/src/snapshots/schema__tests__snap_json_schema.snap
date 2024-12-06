@@ -95,7 +95,7 @@ $defs:
       - ignore
       - warning
   Rules:
-    description: "Rules represents the rules of commitlint.\n See: https://commitlint.js.org/reference/rules.html"
+    description: "Rules represents the rules of commitlint.\n See: [rules documentation](https://commitlint.js.org/reference/rules.html)"
     type: object
     properties:
       type:
